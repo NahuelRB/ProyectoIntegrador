@@ -4,6 +4,7 @@ import com.dh.ProyectoIntegrador.repository.impl.PatientRepository;
 import com.dh.ProyectoIntegrador.repository.impl.PatientRepositoryH2;
 import com.dh.ProyectoIntegrador.model.Patient;
 import com.dh.ProyectoIntegrador.service.PatientService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +16,8 @@ import java.util.List;
 @RequestMapping("/patient")
 public class PatientController {
 
-    private PatientService patientService = new PatientService(new PatientRepository());
-
-    public PatientController() throws ParseException {
-    }
+    @Autowired
+    PatientService patientService;// = new PatientService(new PatientRepository());
 
     @GetMapping("/{id}")
     public ResponseEntity<Patient> getId(@PathVariable int id) {
