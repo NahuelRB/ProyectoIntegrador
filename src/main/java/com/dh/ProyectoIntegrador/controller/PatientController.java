@@ -18,7 +18,7 @@ public class PatientController {
 
     @Autowired
     PatientService patientService;// = new PatientService(new PatientRepository());
-
+//probando
     @GetMapping("/{id}")
     public ResponseEntity<Patient> getId(@PathVariable int id) {
         return ResponseEntity.ok(patientService.getId(id));
