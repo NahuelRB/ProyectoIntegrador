@@ -1,8 +1,7 @@
-package com.dh.ProyectoIntegrador.model;
+package com.dh.ProyectoIntegrador.entity;
 
 import lombok.*;
 import javax.persistence.*;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor

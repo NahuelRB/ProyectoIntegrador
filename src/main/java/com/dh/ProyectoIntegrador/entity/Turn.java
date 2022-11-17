@@ -1,4 +1,4 @@
-package com.dh.ProyectoIntegrador.model;
+package com.dh.ProyectoIntegrador.entity;
 
 import java.util.Date;
 

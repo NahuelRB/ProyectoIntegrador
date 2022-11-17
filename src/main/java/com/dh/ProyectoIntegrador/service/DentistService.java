@@ -1,9 +1,7 @@
 package com.dh.ProyectoIntegrador.service;
 
 import com.dh.ProyectoIntegrador.dao.IDaoPrueba;
-import com.dh.ProyectoIntegrador.model.Dentist;
-import com.dh.ProyectoIntegrador.repository.impl.DentistaRepository;
-import org.springframework.stereotype.Service;
+import com.dh.ProyectoIntegrador.entity.Dentist;
 
 
 public class DentistService {
