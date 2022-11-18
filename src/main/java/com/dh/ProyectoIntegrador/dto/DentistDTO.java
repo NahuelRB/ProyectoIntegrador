@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 //@AllArgsConstructor - Creo que no lo necesita en DTO
-@Data
-@Entity
-@Table(name="dentists")
-@NoArgsConstructor
+@Data//Me crea todos los getters y setters de las variables
+@Entity// Para la base de datos con ORM
+@Table(name = "dentists")//Va a crear una tabla en la base de datos con el nombre dentists si no lo tiene
+@NoArgsConstructor//Crea un constructor sin parametros
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DentistDTO {
 
@@ -24,5 +24,4 @@ public class DentistDTO {
     private String SName;
     @Column(length = 15, nullable = false)
     private String STuition;
-
 }
