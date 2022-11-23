@@ -1,4 +1,4 @@
-package com.dh.ProyectoIntegrador.dto;
+package com.dh.ProyectoIntegrador.entity.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Data//Me crea todos los getters y setters de las variables
 @Entity// Para la base de datos con ORM
 @Table(name = "dentists")//Va a crear una tabla en la base de datos con el nombre dentists si no lo tiene
-@NoArgsConstructor//Crea un constructor sin parametros
+//@NoArgsConstructor//Crea un constructor sin parametros
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DentistDTO {
 
