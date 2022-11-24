@@ -13,7 +13,7 @@ public class PatientDTO{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)//Para ponerla como id principal
-    private Long idPatient;
+    private Long id;
     //@Column(nullable = false)//No admite nulos con false con true si, cuando se tenga que ingresar un dato
     private String name;
     //@Column(nullable = false)

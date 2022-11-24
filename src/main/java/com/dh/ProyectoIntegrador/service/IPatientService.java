@@ -17,13 +17,4 @@ public interface IPatientService{
     void save(PatientDTO patientDTO);
     void delete(Long id);
     void update(PatientDTO patientDTO);
-    /*void save(PatientDTO patientDTO);
-    //PatientDTO getId(long id);
-    void update(PatientDTO patientDTO);
-    void delete(Long id);
-
-    Set<PatientDTO> getAll();
-*/
-
-
 }

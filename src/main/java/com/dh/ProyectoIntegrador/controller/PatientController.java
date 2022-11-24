@@ -1,7 +1,6 @@
 package com.dh.ProyectoIntegrador.controller;
 
 import com.dh.ProyectoIntegrador.dto.PatientDTO;
-import com.dh.ProyectoIntegrador.entity.Patient;
 import com.dh.ProyectoIntegrador.service.IPatientService;
 
 import org.apache.log4j.Logger;
@@ -26,7 +25,6 @@ public class PatientController {
 
     @GetMapping("/{id}")
     public PatientDTO getId(@PathVariable Long id) {
-        log.info("Se solicita el paciente con el ID:" + id);
         return patientService.getId(id);
     }
 
@@ -34,14 +32,12 @@ public class PatientController {
     //http://localhost:8080/patient
     @GetMapping()
     public Set<PatientDTO> getPatients() {
-        log.info("Se solicitan todos los pacientes");
         return patientService.getAll();
     }
 
     @PostMapping()
     public void save(@RequestBody PatientDTO patientDTO) {
-        log.info("Se guardo el paciente");
-        patientService.update(patientDTO);
+        patientService.save(patientDTO);
     }
 
     @PutMapping()
@@ -55,7 +51,6 @@ public class PatientController {
         if (id != 0) response = ResponseEntity.status(HttpStatus.OK).build();
         else response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         patientService.delete(id);
-        log.info("Se elimino el paciente con el ID:" + id);
         return response;
     }
 
