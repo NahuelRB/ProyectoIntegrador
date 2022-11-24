@@ -56,6 +56,10 @@ public class PatientServiceImpl implements IPatientService {
         patientRepository.deleteById(id);
     }
 
+    public void update(PatientDTO patientDTO){
+        save(patientDTO);
+    }
+
     /*public Patient buscarPorNombre(String nombre){
         return patientRepository.buscarPaciente(nombre).get();
     }*/

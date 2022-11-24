@@ -41,7 +41,12 @@ public class PatientController {
     @PostMapping()
     public void save(@RequestBody PatientDTO patientDTO) {
         log.info("Se guardo el paciente");
-        patientService.save(patientDTO);
+        patientService.update(patientDTO);
+    }
+
+    @PutMapping()
+    public void update(@RequestBody PatientDTO patientDTO){
+        patientService.update(patientDTO);
     }
 
     @DeleteMapping("/{id}")
