@@ -1,43 +1,45 @@
 package com.dh.ProyectoIntegrador.controller;
 
+import com.dh.ProyectoIntegrador.dto.DentistDTO;
+import com.dh.ProyectoIntegrador.service.IDentistService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RestController
 @RequestMapping("/dentist")
 public class DentistController {
-  /*  private final DentistService dentistService;
+    private IDentistService dentistService;
 
     @Autowired
-    public DentistController(DentistService dentistService) {
+    public DentistController(IDentistService dentistService) {
         this.dentistService = dentistService;
     }
 
-    //@PostMapping("/saveDentist")
-    @PostMapping("/save")
-    public Dentist saveDentist(@RequestBody Dentist dentist){
-        return dentistService.save(dentist);
+    @GetMapping("/{id}")
+    public DentistDTO getId(@PathVariable Long id) {
+        return dentistService.getId(id);
     }
 
-    @PutMapping("/update")
-    public void updateDentist(Dentist dentist){
-        dentistService.update(dentist);
-    }
-
-    @DeleteMapping("/delete")
-    public void delete(int id){
-        dentistService.delete(id);
-    }
-
-    @GetMapping("/list")
-    public List<Dentist> getAllDentist(){
+    @GetMapping()
+    public Set<DentistDTO> getPatients() {
         return dentistService.getAll();
     }
 
-    @GetMapping("/list/{id}")
-    public List<Dentist> getIdDentist(@PathVariable int id){
-        return dentistService.getId(id);
-    }*/
+    @PostMapping()
+    public void save(@RequestBody DentistDTO dentistDTO) {
+        dentistService.save(dentistDTO);
+    }
 
-
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable Long id) {
+        ResponseEntity response = null;
+        if (id != 0) response = ResponseEntity.status(HttpStatus.OK).build();
+        else response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        dentistService.delete(id);
+        return response;
+    }
 }

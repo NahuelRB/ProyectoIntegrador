@@ -4,22 +4,29 @@ import lombok.*;
 
 import javax.persistence.*;
 
+@AllArgsConstructor
 @Data
 @Entity
 @Table(name="dentists")
 @NoArgsConstructor
-@AllArgsConstructor
 public class Dentist {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int IId;
-    @Column(nullable = false)
-    private String SLastname;
-    @Column(nullable = false)
-    private String SName;
-    @Column(length = 15, nullable = false)
-    private String STuition;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
+    private String lastname;
+
+    private String name;
+
+    private String tuition;
+
+    /*@ManyToMany(fetch = FetchType.LAZY)
+    @JoinColumn()
+    private Patient patient;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = )
+    private Turn turn;*/
 
 
 }

@@ -12,16 +12,24 @@ import javax.persistence.*;
 public class Patient {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//Para ponerla como id principal
-    private int Id;
-    @Column(nullable = false)//No admite nulos con false con true si, cuando se tenga que ingresar un dato
-    private String SName;
-    @Column(nullable = false)
-    private String SLastname;
-    @Column(nullable = false)
-    private String SAddress;
-    @Column(nullable = false)
-    private String SDni;
-    @Column(nullable = false)
-    private String SHighdate;
+    @GeneratedValue(strategy = GenerationType.AUTO)//Para ponerla como id principal
+    private Long id;
+    //@Column(nullable = false)//No admite nulos con false con true si, cuando se tenga que ingresar un dato
+    private String name;
+    //@Column(nullable = false)
+    private String lastname;
+    //@Column(nullable = false)
+    private String address;
+    //@Column(nullable = false)
+    private String dni;
+    //@Column(nullable = false)
+    private String highdate;
+
+    /*@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="id_dentist")
+    private Dentist dentist;
+
+    //@OneToOne(mappedBy = "")
+    @JoinColumn(name="id_turn", referencedColumnName = "id")
+    private Turn turn;*/
 }

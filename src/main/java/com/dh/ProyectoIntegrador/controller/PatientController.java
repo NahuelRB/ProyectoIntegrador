@@ -1,8 +1,7 @@
 package com.dh.ProyectoIntegrador.controller;
 
-import com.dh.ProyectoIntegrador.entity.Patient;
-import com.dh.ProyectoIntegrador.repository.impl.PatientRepository;
-import com.dh.ProyectoIntegrador.service.PatientService;
+import com.dh.ProyectoIntegrador.dto.PatientDTO;
+import com.dh.ProyectoIntegrador.service.IPatientService;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,53 +9,53 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @RestController//Lo ponemos al que se comunica con la vista o sea el front
 @RequestMapping("/patient")//Aca designo como va a ser la url
 public class PatientController {
     static Logger log = Logger.getLogger(PatientController.class);
 
-    //@Autowired(required = true)
-    //private Log log = new Log();
-
-    private PatientService patientService = new PatientService(new PatientRepository());
-
+    private IPatientService patientService;
     @Autowired
-    public PatientController(PatientService patientService) {
+    public PatientController(IPatientService patientService) {
         this.patientService = patientService;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Patient> getId(@PathVariable int id) {
-        log.info("Se solicita el paciente con el ID:" + id);
-        return ResponseEntity.ok(patientService.getId(id));
+    public PatientDTO getId(@PathVariable Long id) {
+        return patientService.getId(id);
     }
 
     //Obtenemos todos los pacientes
     //http://localhost:8080/patient
     @GetMapping()
-    public List<Patient> getAll() {
-        log.info("Se solicitan todos los pacientes");
+    public Set<PatientDTO> getPatients() {
         return patientService.getAll();
     }
 
-    //Guardamos los pacientes y de tener el mismo id lo modificamos
-    //http://localhost:8080/patient/save    (en el postman cargamos los datos en el body)
-    @PostMapping("/save")
-    public Patient save(@RequestBody Patient patient) {
-        log.info("Se guardo el paciente");
-        return patientService.save(patient);
+    @PostMapping()
+    public void save(@RequestBody PatientDTO patientDTO) {
+        patientService.save(patientDTO);
     }
 
-    //Eliminamos un paciente
-    //http://localhost:8080/patient?id=xx  ingresamos el id del que queremos eliminar
+    @PutMapping()
+    public void update(@RequestBody PatientDTO patientDTO){
+        patientService.update(patientDTO);
+    }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable int id) {
-        log.info("Se elimino el paciente con el ID:" + id);
+    public ResponseEntity delete(@PathVariable Long id) {
         ResponseEntity response = null;
-        if (patientService.delete(id)) response = ResponseEntity.status(HttpStatus.OK).build();
+        if (id != 0) response = ResponseEntity.status(HttpStatus.OK).build();
         else response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        patientService.delete(id);
         return response;
     }
+
+    /*@GetMapping("/{nombre}")
+    public Optional<Patient> buscarPorNombre(@PathVariable String nombre){
+        return patientService.buscarPaciente(nombre);
+    }*/
 }

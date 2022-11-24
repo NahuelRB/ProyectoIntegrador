@@ -1,43 +1,25 @@
 package com.dh.ProyectoIntegrador.entity;
 
+import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
+@Table(name="turns")
 public class Turn {
 
-    private Date DFechaHora;
-    private Dentist dentist;
-    private Patient patient;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int idTurn;
+    @Column
+    private Date dateTurn;
 
-    public Turn() {
-    }
+    /*@ManyToMany
+    private Turn turn;
 
-    public Turn(Date DFechaHora, Dentist dentist, Patient patient) {
-        this.DFechaHora = DFechaHora;
-        this.dentist = dentist;
-        this.patient = patient;
-        }
-
-    public Date getDFechaHora() {
-        return DFechaHora;
-    }
-
-    public void setDFechaHora(Date DFechaHora) {
-        this.DFechaHora = DFechaHora;
-    }
-
-    public Dentist getDentist() {
-        return dentist;
-    }
-
-    public void setDentist(Dentist dentist) {
-        this.dentist = dentist;
-    }
-
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Set<Dentist> dentists = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Set<Patient> patients = new HashSet<>();*/
 }
