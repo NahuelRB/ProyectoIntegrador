@@ -1,8 +1,7 @@
 package com.dh.ProyectoIntegrador.service;
 
+import com.dh.ProyectoIntegrador.dto.PatientDTO;
 import com.dh.ProyectoIntegrador.entity.Patient;
-import com.dh.ProyectoIntegrador.entity.dto.PatientDTO;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
@@ -13,11 +12,17 @@ public interface IPatientService{
     @Query("Select p from patient p where a.nombre=?1")
     Optional<Patient> buscarPaciente(String nombre);
 
+    PatientDTO getId(long id);
+    Set<PatientDTO> getAll();
     void save(PatientDTO patientDTO);
-    PatientDTO getId(Long id);
+    void delete(Long id);
+    /*void save(PatientDTO patientDTO);
+    //PatientDTO getId(long id);
     void update(PatientDTO patientDTO);
     void delete(Long id);
 
     Set<PatientDTO> getAll();
+*/
+
 
 }

@@ -14,15 +14,15 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)//Para ponerla como id principal
     private Long idPatient;
-    @Column(nullable = false)//No admite nulos con false con true si, cuando se tenga que ingresar un dato
+    //@Column(nullable = false)//No admite nulos con false con true si, cuando se tenga que ingresar un dato
     private String name;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String lastname;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String address;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String dni;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String highdate;
 
     /*@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
