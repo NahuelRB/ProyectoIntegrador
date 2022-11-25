@@ -15,8 +15,6 @@ import java.util.Set;
 @RestController//Lo ponemos al que se comunica con la vista o sea el front
 @RequestMapping("/patient")//Aca designo como va a ser la url
 public class PatientController {
-    static Logger log = Logger.getLogger(PatientController.class);
-
     private IPatientService patientService;
     @Autowired
     public PatientController(IPatientService patientService) {

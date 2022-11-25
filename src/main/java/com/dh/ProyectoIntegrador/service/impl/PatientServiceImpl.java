@@ -34,7 +34,7 @@ public class PatientServiceImpl implements IPatientService {
         PatientDTO patientDTO = null;
         if (patient.isPresent())
             patientDTO = mapper.convertValue(patient, PatientDTO.class);
-        log.info("Se solicita el paciente con el ID:" + id);
+        log.info("Se solicita el paciente con el ID: " + id);
         return patientDTO;
     }
 
@@ -62,7 +62,7 @@ public class PatientServiceImpl implements IPatientService {
 
     public void delete(Long id) {
         patientRepository.deleteById(id);
-        log.info("Se elimino el paciente con el ID:" + id);
+        log.info("Se elimino el paciente");
     }
 
     public void update(PatientDTO patientDTO) {

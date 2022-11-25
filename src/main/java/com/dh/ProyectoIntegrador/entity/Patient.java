@@ -2,13 +2,13 @@ package com.dh.ProyectoIntegrador.entity;
 
 import lombok.*;
 import javax.persistence.*;
+import java.util.List;
 
-
-@AllArgsConstructor
-@Data//Me crea todos los getters y setters de las variables
 @Entity// Para la base de datos con ORM
 @Table(name="patients")//Va a crear una tabla en la base de datos con el nombre patients si no lo tiene
-@NoArgsConstructor//Crea un constructor sin parametros
+@Setter
+@Getter
+@NoArgsConstructor
 public class Patient {
 
     @Id
@@ -24,6 +24,9 @@ public class Patient {
     private String dni;
     //@Column(nullable = false)
     private String highdate;
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    private List<Turn> turnos;
 
     /*@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="id_dentist")

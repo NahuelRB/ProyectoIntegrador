@@ -63,5 +63,6 @@ public class DentistServiceImpl implements IDentistService {
     @Override
     public void update(DentistDTO dentistDTO) {
         save(dentistDTO);
+        log.info("Se actualizo el dentista");
     }
 }

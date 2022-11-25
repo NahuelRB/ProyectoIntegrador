@@ -42,4 +42,9 @@ public class DentistController {
         dentistService.delete(id);
         return response;
     }
+
+    @PutMapping
+    public void update(@RequestBody DentistDTO dentistDTO){
+        dentistService.update(dentistDTO);
+    }
 }
