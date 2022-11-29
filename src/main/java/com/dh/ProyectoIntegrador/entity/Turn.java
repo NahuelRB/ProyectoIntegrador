@@ -2,6 +2,8 @@ package com.dh.ProyectoIntegrador.entity;
 
 import com.dh.ProyectoIntegrador.dto.DentistDTO;
 import com.dh.ProyectoIntegrador.dto.PatientDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,22 +19,28 @@ import java.util.Set;
 @Setter
 @Getter
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Turn {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String dateTurn;
+    private String date_turn;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+   /* private Long dentist_id;
+
+    private Long patient_id;*/
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="dentist_id")
+    @JsonIgnore
     private Dentist dentist;
     //private Set<Dentist> dentists = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="patient_id")
-    private Patient patient;
+    /*@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="patient_id", referencedColumnName = "id")
+    private Patient patient;*/
+
     //private Set<Patient> patients = new HashSet<>();
 
     /*@ManyToOne(fetch = FetchType.LAZY)

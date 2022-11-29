@@ -1,19 +1,19 @@
 package com.dh.ProyectoIntegrador.controller;
 
 import com.dh.ProyectoIntegrador.dto.PatientDTO;
+import com.dh.ProyectoIntegrador.entity.Patient;
 import com.dh.ProyectoIntegrador.service.IPatientService;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 import java.util.Set;
 
-@RestController//Lo ponemos al que se comunica con la vista o sea el front
-@RequestMapping("/patient")//Aca designo como va a ser la url
+@RestController
+@RequestMapping("/patient")
 public class PatientController {
     private IPatientService patientService;
     @Autowired
@@ -52,8 +52,9 @@ public class PatientController {
         return response;
     }
 
-    /*@GetMapping("/{nombre}")
-    public Optional<Patient> buscarPorNombre(@PathVariable String nombre){
-        return patientService.buscarPaciente(nombre);
-    }*/
+    @GetMapping("/nombre/{nombre}")
+    public Patient buscarPorNombre(@PathVariable String nombre){
+        System.out.println(nombre);
+        return patientService.findPatientByName(nombre);
+    }
 }

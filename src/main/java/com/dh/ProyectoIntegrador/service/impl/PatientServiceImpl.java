@@ -15,10 +15,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-@Service//Se crea el bean de service se pones asi para que quede asentado que es el de negocio
-//@AllArgsConstructor//Nos crea todos los constructores posibles con parametros
+@Service
 public class PatientServiceImpl implements IPatientService {
-    Logger log = Logger.getLogger(PatientController.class);
+    static Logger log = Logger.getLogger(PatientController.class);
     @Autowired
     ObjectMapper mapper;
     private IPatientRepository patientRepository;
@@ -50,22 +49,25 @@ public class PatientServiceImpl implements IPatientService {
     }
 
     @Override
-    public Optional<Patient> buscarPaciente(String nombre) {
-        return Optional.empty();
-    }
-
     public void save(PatientDTO patientDTO) {
         Patient patient = mapper.convertValue(patientDTO, Patient.class);
         patientRepository.save(patient);
         log.info("Se guardo el paciente");
     }
 
+    @Override
     public void delete(Long id) {
         patientRepository.deleteById(id);
         log.info("Se elimino el paciente");
     }
 
+    @Override
     public void update(PatientDTO patientDTO) {
         save(patientDTO);
     }
+    @Override
+    public Patient findPatientByName(String name){
+        return patientRepository.findPatientByName(name);
+    }
+
 }

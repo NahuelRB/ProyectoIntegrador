@@ -1,32 +1,42 @@
 package com.dh.ProyectoIntegrador.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
-@Entity// Para la base de datos con ORM
-@Table(name="patients")//Va a crear una tabla en la base de datos con el nombre patients si no lo tiene
+@Entity
+@Table(name="patients")
 @Setter
 @Getter
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Patient {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)//Para ponerla como id principal
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //@Column(nullable = false)//No admite nulos con false con true si, cuando se tenga que ingresar un dato
+
     private String name;
-    //@Column(nullable = false)
+
     private String lastname;
-    //@Column(nullable = false)
+
     private String address;
-    //@Column(nullable = false)
+
     private String dni;
-    //@Column(nullable = false)
+
     private String highdate;
 
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
-    private List<Turn> turnos;
+    /*@OneToOne(mappedBy = "patient")
+    private Turn turn;*/
+
+    /*@ManyToMany
+    @JoinTable(name="turns",
+                joinColumns = @JoinColumn(name = "dentist_id"),
+                inverseJoinColumns = @JoinColumn(name = "patient_id"))
+    @JsonIgnore
+    private Set<Dentist> dentistas;*/
 
     /*@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="id_dentist")

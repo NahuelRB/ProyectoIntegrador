@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/turn")
+@RequestMapping("/turns")
 public class TurnsController {
 
     private ITurnService turnService;

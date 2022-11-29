@@ -17,7 +17,6 @@ import java.util.Set;
 @Service
 public class DentistServiceImpl implements IDentistService {
     static Logger log = Logger.getLogger(DentistServiceImpl.class);
-
     @Autowired
     ObjectMapper mapper;
     private IDentistRepository dentistRepository;
@@ -50,6 +49,8 @@ public class DentistServiceImpl implements IDentistService {
     @Override
     public void save(DentistDTO dentistDTO) {
         Dentist dentist = mapper.convertValue(dentistDTO, Dentist.class);
+        System.out.println(dentist.getId());
+        System.out.println(dentist.getName());
         dentistRepository.save(dentist);
         log.info("Se guardo el dentista");
     }

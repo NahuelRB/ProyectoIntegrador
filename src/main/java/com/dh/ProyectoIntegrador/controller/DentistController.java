@@ -13,7 +13,6 @@ import java.util.Set;
 @RequestMapping("/dentist")
 public class DentistController {
     private IDentistService dentistService;
-
     @Autowired
     public DentistController(IDentistService dentistService) {
         this.dentistService = dentistService;
@@ -26,6 +25,7 @@ public class DentistController {
 
     @GetMapping()
     public Set<DentistDTO> getPatients() {
+
         return dentistService.getAll();
     }
 
