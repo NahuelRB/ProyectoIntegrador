@@ -11,9 +11,7 @@ import java.util.Set;
 
 public interface IPatientService{
 
-    @Query("select d from  d d.name = ?1")
-    Patient findPatientByName(String name);
-
+    Patient findPatientByNameAndLastname(String name, String lastname);
     PatientDTO getId(long id);
     Set<PatientDTO> getAll();
     void save(PatientDTO patientDTO);

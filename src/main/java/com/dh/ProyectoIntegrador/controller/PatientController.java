@@ -52,9 +52,8 @@ public class PatientController {
         return response;
     }
 
-    @GetMapping("/nombre/{nombre}")
-    public Patient buscarPorNombre(@PathVariable String nombre){
-        System.out.println(nombre);
-        return patientService.findPatientByName(nombre);
+    @GetMapping("/byName/{name}/{lastname}")
+    public Patient buscarPorNombre(@PathVariable String name,@PathVariable String lastname){
+        return patientService.findPatientByNameAndLastname(name,lastname);
     }
 }

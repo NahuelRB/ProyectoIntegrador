@@ -9,9 +9,6 @@ import java.util.Set;
 
 @Entity
 @Table(name="patients")
-@Setter
-@Getter
-@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Patient {
     @Id
@@ -22,14 +19,15 @@ public class Patient {
 
     private String lastname;
 
-    private String address;
+    //private String address;
 
     private String dni;
 
     private String highdate;
 
-    /*@OneToOne(mappedBy = "patient")
-    private Turn turn;*/
+    @OneToOne
+    @JoinColumn(name="address_id", nullable = false)
+    private Address address;
 
     /*@ManyToMany
     @JoinTable(name="turns",

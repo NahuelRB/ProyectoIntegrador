@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface IPatientRepository extends JpaRepository<Patient,Long> {
 
-    @Query("SELECT d FROM Patient d where d.name = ?1")
-    Patient findPatientByName(String name);
+    @Query("SELECT d FROM Patient d where d.name = ?1 and d.lastname= ?2")
+    Patient findPatientByNameAndLastname(String name, String lastname);
 
 }

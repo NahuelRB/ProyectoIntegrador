@@ -18,7 +18,7 @@ class PatientServiceImplTest {
         patientDTO.setName("Nahuel");
         patientDTO.setLastname("Barbosa");
         patientDTO.setDni("35403946");
-        patientDTO.setAddress("11 de septiembre 2070");
+        //patientDTO.setAddress("11 de septiembre 2070");
         patientDTO.setHighdate("11-10-1990");
         patientService.save(patientDTO);
         PatientDTO patientPrueba = patientService.getId(patientDTO.getId());

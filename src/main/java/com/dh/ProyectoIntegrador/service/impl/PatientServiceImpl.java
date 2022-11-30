@@ -38,6 +38,10 @@ public class PatientServiceImpl implements IPatientService {
     }
 
     @Override
+    public Patient findPatientByNameAndLastname(String name, String lastname){
+        return patientRepository.findPatientByNameAndLastname(name,lastname);
+    }
+    @Override
     public Set<PatientDTO> getAll() {
         List<Patient> patients = patientRepository.findAll();
         Set<PatientDTO> patientDTO = new HashSet<>();
@@ -65,9 +69,6 @@ public class PatientServiceImpl implements IPatientService {
     public void update(PatientDTO patientDTO) {
         save(patientDTO);
     }
-    @Override
-    public Patient findPatientByName(String name){
-        return patientRepository.findPatientByName(name);
-    }
+
 
 }
