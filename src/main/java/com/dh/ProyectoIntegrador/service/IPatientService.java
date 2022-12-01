@@ -14,7 +14,7 @@ public interface IPatientService{
     Patient findPatientByNameAndLastname(String name, String lastname);
     PatientDTO getId(long id);
     Set<PatientDTO> getAll();
-    void save(PatientDTO patientDTO);
+    PatientDTO save(PatientDTO patientDTO);
     void delete(Long id);
     void update(PatientDTO patientDTO);
 }

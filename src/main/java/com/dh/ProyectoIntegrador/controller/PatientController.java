@@ -5,6 +5,7 @@ import com.dh.ProyectoIntegrador.dto.PatientDTO;
 import com.dh.ProyectoIntegrador.entity.Patient;
 import com.dh.ProyectoIntegrador.service.IPatientService;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,32 +18,48 @@ import java.util.Set;
 @RestController
 @RequestMapping("/patient")
 public class PatientController {
+
+    Logger log = Logger.getLogger(PatientController.class);
+
     private IPatientService patientService;
+
     @Autowired
     public PatientController(IPatientService patientService) {
         this.patientService = patientService;
     }
 
     @GetMapping("/{id}")
-    public PatientDTO getId(@PathVariable Long id) {
-        return patientService.getId(id);
+    public ResponseEntity<PatientDTO> getId(@PathVariable Long id) {
+        ResponseEntity<PatientDTO> response = ResponseEntity.notFound().build();
+        PatientDTO patientDTO = patientService.getId(id);
+        if (patientDTO != null) {
+            response = ResponseEntity.ok().body(patientDTO);
+        } else {
+            log.error("No se encontro el paciente");
+        }
+        return response;
     }
 
-    //Obtenemos todos los pacientes
-    //http://localhost:8080/patient
     @GetMapping()
-    public Set<PatientDTO> getPatients() {
-        return patientService.getAll();
+    public ResponseEntity<Set<PatientDTO>> getPatients() {
+        ResponseEntity<Set<PatientDTO>> response = ResponseEntity.badRequest().build();
+        Set<PatientDTO> patientDTO = patientService.getAll();
+        if (patientDTO != null) response = ResponseEntity.ok().body(patientDTO);
+        else log.error("No se encontraron pacientes");
+
+        return response;
     }
 
     @PostMapping()
-    public void save(@RequestBody PatientDTO patientDTO) {
-        patientService.save(patientDTO);
+    public ResponseEntity<PatientDTO> save(@RequestBody PatientDTO patientDTO) {
+        PatientDTO response = patientService.save(patientDTO);
+        return ResponseEntity.ok().body(response);
     }
 
     @PutMapping()
-    public void update(@RequestBody PatientDTO patientDTO){
+    public void update(@RequestBody PatientDTO patientDTO) {
         patientService.update(patientDTO);
+        log.error("Se guardaron los cambios");
     }
 
     @DeleteMapping("/{id}")
@@ -55,7 +72,7 @@ public class PatientController {
     }
 
     @GetMapping("/byName/{name}/{lastname}")
-    public Patient buscarPorNombre(@PathVariable String name,@PathVariable String lastname){
-        return patientService.findPatientByNameAndLastname(name,lastname);
+    public Patient buscarPorNombre(@PathVariable String name, @PathVariable String lastname) {
+        return patientService.findPatientByNameAndLastname(name, lastname);
     }
 }

@@ -24,9 +24,10 @@ public class AddressController {
     @GetMapping("/{id}")
     public ResponseEntity<AddressDTO> getAddress(@PathVariable Long id) {
         ResponseEntity<AddressDTO> response = ResponseEntity.notFound().build();
-        if (id > 0)
-            return new ResponseEntity<>(addressService.getId(id),HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        AddressDTO addressDTO = addressService.getId(id);
+        if(addressDTO != null)
+           response = ResponseEntity.ok().body(addressDTO);
+        return response;
     }
     @GetMapping()
     public ResponseEntity<Set<AddressDTO>> getPatients() {

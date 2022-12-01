@@ -53,10 +53,11 @@ public class PatientServiceImpl implements IPatientService {
     }
 
     @Override
-    public void save(PatientDTO patientDTO) {
+    public PatientDTO save(PatientDTO patientDTO) {
         Patient patient = mapper.convertValue(patientDTO, Patient.class);
-        patientRepository.save(patient);
+        Patient savePatient = patientRepository.save(patient);
         log.info("Se guardo el paciente");
+       return mapper.convertValue(savePatient, PatientDTO.class);
     }
 
     @Override
