@@ -9,7 +9,7 @@ public interface ITurnService {
 
     TurnDTO getId(long id);
     Set<TurnDTO> getAll();
-    void save(TurnDTO turnDTO);
+    TurnDTO save(TurnDTO turnDTO);
     void delete(Long id);
     void update(TurnDTO turnDTO);
 

@@ -14,15 +14,17 @@ import javax.persistence.OneToOne;
 @Setter
 @Getter
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class AddressDTO {
 
-        private Long id;
+        //private Long id;
         private String name_address;
         private int number;
         private String country;
+
         @OneToOne
         @JoinColumn(name="patient_id")
         private Patient patient;
+
 
 }

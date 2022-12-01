@@ -12,7 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

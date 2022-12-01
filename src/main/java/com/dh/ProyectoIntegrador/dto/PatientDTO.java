@@ -15,10 +15,10 @@ import javax.persistence.OneToOne;
 @Getter
 @Setter
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class PatientDTO{
 
-    private Long id;
+    //private Long id;
     private String name;
     private String lastname;
     //private String address;

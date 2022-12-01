@@ -66,6 +66,6 @@ public class AddressServiceImpl implements IAddressService {
     @Override
     public void update(AddressDTO addressDTO) {
         save(addressDTO);
-        log.info("Se actualizaron los cambios del ID: " + addressDTO.getId());
+        log.info("Se actualizaron los cambios del ID: ");
     }
 }

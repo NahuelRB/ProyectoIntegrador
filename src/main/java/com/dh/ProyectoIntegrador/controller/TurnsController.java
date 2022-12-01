@@ -1,9 +1,12 @@
 package com.dh.ProyectoIntegrador.controller;
 
 import com.dh.ProyectoIntegrador.dto.TurnDTO;
+import com.dh.ProyectoIntegrador.entity.Turn;
 import com.dh.ProyectoIntegrador.repository.ITurnRepository;
 import com.dh.ProyectoIntegrador.service.ITurnService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,18 +24,23 @@ public class TurnsController {
     }
 
     @GetMapping("/{id}")
-    public TurnDTO getId(@PathVariable Long id){
-        return turnService.getId(id);
+    public ResponseEntity<TurnDTO> getId(@PathVariable Long id){
+        ResponseEntity<TurnDTO> response = ResponseEntity.notFound().build();
+        TurnDTO turnDTO = turnService.getId(id);
+        if (turnDTO != null)
+            response = ResponseEntity.ok().body(turnDTO);
+        return response;
     }
 
     @GetMapping()
-    public Set<TurnDTO> getAll(){
-        return turnService.getAll();
+    public ResponseEntity<Set<TurnDTO>> getAll(){
+       return new ResponseEntity<>(turnService.getAll(), HttpStatus.OK);
     }
 
     @PostMapping()
-    public void save(@RequestBody TurnDTO turnDTO){
-        turnService.save(turnDTO);
+    public ResponseEntity<TurnDTO> save(@RequestBody TurnDTO turnDTO){
+        TurnDTO response = turnService.save(turnDTO);
+        return  ResponseEntity.ok().body(response);
     }
 
 }

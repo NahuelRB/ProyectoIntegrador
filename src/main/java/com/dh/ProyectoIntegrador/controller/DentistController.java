@@ -19,19 +19,22 @@ public class DentistController {
     }
 
     @GetMapping("/{id}")
-    public DentistDTO getId(@PathVariable Long id) {
-        return dentistService.getId(id);
+    public ResponseEntity<DentistDTO> getId(@PathVariable Long id) {
+        ResponseEntity<DentistDTO> response = ResponseEntity.notFound().build();
+        DentistDTO dentistDTO = dentistService.getId(id);
+        if (dentistDTO != null) response = ResponseEntity.ok().body(dentistDTO);
+        return response;
     }
 
     @GetMapping()
-    public Set<DentistDTO> getPatients() {
-
-        return dentistService.getAll();
+    public ResponseEntity<Set<DentistDTO>> getPatients() {
+        return new ResponseEntity<>(dentistService.getAll(),HttpStatus.OK);
     }
 
     @PostMapping()
-    public void save(@RequestBody DentistDTO dentistDTO) {
-        dentistService.save(dentistDTO);
+    public ResponseEntity<DentistDTO> save(@RequestBody DentistDTO dentistDTO) {
+        DentistDTO response = dentistService.save(dentistDTO);
+        return ResponseEntity.ok().body(response);
     }
 
     @DeleteMapping("/{id}")

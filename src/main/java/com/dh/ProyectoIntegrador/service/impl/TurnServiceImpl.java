@@ -48,23 +48,27 @@ public class TurnServiceImpl implements ITurnService {
         Set<TurnDTO> turnDTO = new HashSet<>();
         for(Turn turn : turns)
             turnDTO.add(mapper.convertValue(turn,TurnDTO.class));
+        log.info("Se obtuvieron todas los turnos");
         return turnDTO;
     }
 
     @Override
-    public void save(TurnDTO turnDTO) {
+    public TurnDTO save(TurnDTO turnDTO) {
         Turn turn = mapper.convertValue(turnDTO, Turn.class);
-        turnRepository.save(turn);
-        log.info("Se guardo");
+        Turn saveTurn = turnRepository.save(turn);
+        log.info("Se guardo el turno");
+        return mapper.convertValue(saveTurn, TurnDTO.class);
     }
 
     @Override
     public void delete(Long id) {
-
+        turnRepository.deleteById(id);
+        log.info("Se eliminó el turno con el ID: " + id);
     }
 
     @Override
     public void update(TurnDTO turnDTO) {
-
+        save(turnDTO);
+        log.info("Se actualizaron los cambios del ID: ");
     }
 }

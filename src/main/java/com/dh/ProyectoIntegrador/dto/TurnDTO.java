@@ -13,8 +13,9 @@ public class TurnDTO {
 
     /*@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;*/
+    */
 
+    //private Long id;
     private String date_turn;
 
     /*@ManyToOne(fetch = FetchType.LAZY)

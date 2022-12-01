@@ -28,11 +28,10 @@ public class DentistServiceImpl implements IDentistService {
 
     @Override
     public DentistDTO getId(long id) {
-        Optional<Dentist> dentist = dentistRepository.findById(id);
-        DentistDTO dentistDTO = null;
-        if (dentist.isPresent()) dentistDTO = mapper.convertValue(dentist, DentistDTO.class);
+        Optional<Dentist> dentistOptional = dentistRepository.findById(id);
+        Dentist dentist = dentistOptional.orElse(null);
         log.info("Se solicita el dentista con el ID:" + id);
-        return dentistDTO;
+        return mapper.convertValue(dentist,DentistDTO.class);
     }
 
     @Override
@@ -47,12 +46,11 @@ public class DentistServiceImpl implements IDentistService {
     }
 
     @Override
-    public void save(DentistDTO dentistDTO) {
+    public DentistDTO save(DentistDTO dentistDTO) {
         Dentist dentist = mapper.convertValue(dentistDTO, Dentist.class);
-        System.out.println(dentist.getId());
-        System.out.println(dentist.getName());
-        dentistRepository.save(dentist);
+        Dentist saveDentist = dentistRepository.save(dentist);
         log.info("Se guardo el dentista");
+        return mapper.convertValue(saveDentist, DentistDTO.class);
     }
 
     @Override

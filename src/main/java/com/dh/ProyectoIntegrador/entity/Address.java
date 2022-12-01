@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Address {
 
     @Id
@@ -23,9 +23,9 @@ public class Address {
     private String name_address;
     private int number;
     private String country;
-
     @OneToOne
     @JoinColumn(name="patient_id")
     private Patient patient;
+
 
 }

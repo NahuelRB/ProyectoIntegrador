@@ -69,6 +69,7 @@ public class PatientServiceImpl implements IPatientService {
     @Override
     public void update(PatientDTO patientDTO) {
         save(patientDTO);
+        log.info("Se modificó el paciente con el ID: ");
     }
 
 
