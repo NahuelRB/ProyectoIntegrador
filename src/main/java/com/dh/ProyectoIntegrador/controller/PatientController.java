@@ -1,5 +1,6 @@
 package com.dh.ProyectoIntegrador.controller;
 
+import com.dh.ProyectoIntegrador.dto.AddressDTO;
 import com.dh.ProyectoIntegrador.dto.PatientDTO;
 import com.dh.ProyectoIntegrador.entity.Patient;
 import com.dh.ProyectoIntegrador.service.IPatientService;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController

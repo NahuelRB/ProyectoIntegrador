@@ -10,7 +10,7 @@ public interface IAddressService {
 
     Set<AddressDTO> getAll();
 
-    void save(AddressDTO addressDTO);
+    AddressDTO save(AddressDTO addressDTO);
 
     void delete(Long id);
 

@@ -18,13 +18,14 @@ import javax.persistence.*;
 public class Address {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nameAddress;
+    private String name_address;
     private int number;
     private String country;
 
-    @OneToOne(mappedBy = "address")
-    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name="patient_id")
     private Patient patient;
 
 }

@@ -22,19 +22,21 @@ public class AddressController {
     }
 
     @GetMapping("/{id}")
-    public AddressDTO getId(@PathVariable Long id) {
-        return addressService.getId(id);
+    public ResponseEntity<AddressDTO> getAddress(@PathVariable Long id) {
+        ResponseEntity<AddressDTO> response = ResponseEntity.notFound().build();
+        if (id > 0)
+            return new ResponseEntity<>(addressService.getId(id),HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
-
     @GetMapping()
-    public Set<AddressDTO> getPatients() {
-        return addressService.getAll();
+    public ResponseEntity<Set<AddressDTO>> getPatients() {
+        return new ResponseEntity<>(addressService.getAll(),HttpStatus.OK);
     }
 
     @PostMapping()
-    public void save(@RequestBody AddressDTO addressDTO) {
-        addressService.save(addressDTO);
+    public ResponseEntity<AddressDTO> save(@RequestBody AddressDTO addressDTO) {
+        AddressDTO response = addressService.save(addressDTO);
+        return ResponseEntity.ok().body(response);
     }
 
     @PutMapping()

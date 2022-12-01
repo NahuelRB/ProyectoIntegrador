@@ -1,6 +1,8 @@
 package com.dh.ProyectoIntegrador.dto;
 
 import com.dh.ProyectoIntegrador.entity.Address;
+import com.dh.ProyectoIntegrador.entity.Patient;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,4 +25,8 @@ public class PatientDTO{
     private String dni;
     private String highdate;
 
+
+    @OneToOne(mappedBy = "patient")
+    @JsonIgnore
+    private Address address;
 }

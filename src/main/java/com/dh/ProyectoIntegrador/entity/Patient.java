@@ -9,25 +9,24 @@ import java.util.Set;
 
 @Entity
 @Table(name="patients")
+@Getter
+@Setter
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     private String lastname;
-
     //private String address;
-
     private String dni;
-
     private String highdate;
 
-    @OneToOne
-    @JoinColumn(name="address_id", nullable = false)
+    @OneToOne(mappedBy = "patient")
+    @JsonIgnore
     private Address address;
+
 
     /*@ManyToMany
     @JoinTable(name="turns",
